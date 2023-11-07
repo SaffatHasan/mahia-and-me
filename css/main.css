@@ -57,9 +57,10 @@ body {
 
 .simpleslide100-item {
   background-repeat: no-repeat;
-  background-size: auto 100%;
+  background-size: cover;
+  background-position: center center;
   display: block;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
@@ -99,12 +100,15 @@ body {
 /*//////////////////////////////////////////////////////////////////
 [ L-Text >= 26 ]*/
 .l1-txt1 {
-  font-family: Poppins-Thin;
+  font-family: Great Vibes;
   font-size: 72px;
+  font-weight: bold;
   line-height: 1.1;
-  color: rgba(255, 255, 255, 0.5);
+  color: white;
+  /* color: rgba(255, 255, 255, 0.5); */
+  text-shadow: black 1px 2px;
   text-transform: uppercase;
-  letter-spacing: 15px;
+  letter-spacing: 10px;
 }
 
 .l1-txt2 {
