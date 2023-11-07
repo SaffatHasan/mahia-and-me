@@ -6,12 +6,7 @@
       countdown100: function(options) {
         var defaults = {
           timeZone: "",
-          endtimeYear: 0,
-          endtimeMonth: 0,
-          endtimeDate: 0,
-          endtimeHours: 0,
-          endtimeMinutes: 0,
-          endtimeSeconds: 0,
+          endTime: new Date(),
         }
 
         var options =  $.extend(defaults, options);
@@ -20,19 +15,19 @@
           var obj = $(this);
           var timeNow = new Date();
 
-          var tZ = options.timeZone; console.log(tZ);
-          var endYear = options.endtimeYear;
-          var endMonth = options.endtimeMonth;
-          var endDate = options.endtimeDate;
-          var endHours = options.endtimeHours;
-          var endMinutes = options.endtimeMinutes;
-          var endSeconds = options.endtimeSeconds;
+          var tZ = options.timeZone; 
+          var endYear = options.endTime.getFullYear();
+          var endMonth = options.endTime.getMonth();
+          var endDate = options.endTime.getDate();
+          var endHours = options.endTime.getHours();
+          var endMinutes = options.endTime.getMinutes();
+          var endSeconds = options.endTime.getSeconds();
 
           if(tZ == "") {
-            var deadline = new Date(endYear, endMonth - 1, endDate, endHours, endMinutes, endSeconds);
+            var deadline = new Date(endYear, endMonth, endDate, endHours, endMinutes, endSeconds);
           } 
           else {
-            var deadline = moment.tz([endYear, endMonth - 1, endDate, endHours, endMinutes, endSeconds], tZ).format();
+            var deadline = moment.tz([endYear, endMonth, endDate, endHours, endMinutes, endSeconds], tZ).format();
           }
 
           if(Date.parse(deadline) < Date.parse(timeNow)) {
