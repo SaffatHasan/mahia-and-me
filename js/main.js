@@ -59,19 +59,33 @@
     $('.simpleslide100').each(function(){
         var delay = 7000;
         var speed = 1000;
-        var itemSlide = $(this).find('.simpleslide100-item');
-        var nowSlide = 0;
+        var backgroundImages = $(this).find('.simpleslide100-item');
+        var currentIndex = 0;
 
-        $(itemSlide).hide();
-        $(itemSlide[nowSlide]).show();
-        nowSlide++;
-        if(nowSlide >= itemSlide.length) {nowSlide = 0;}
+        $(backgroundImages).hide();
+        $(backgroundImages[currentIndex]).show();
+        console.log(`${window.innerWidth}`);
+
+        $('.simpleslide100-item').each(() => console.log(`${backgroundImages[currentIndex].offsetWidth}`));
 
         setInterval(function(){
-            $(itemSlide).fadeOut(speed);
-            $(itemSlide[nowSlide]).fadeIn(speed);
-            nowSlide++;
-            if(nowSlide >= itemSlide.length) {nowSlide = 0;}
+            // Increment
+            currentIndex = (currentIndex + 1) % backgroundImages.length;
+            
+            // Skip images too big for current window
+            // TODO: This is an infinite loop when window.Width < slide.Width for all slides
+            // TODO: $(...).clientWidth is always null / 0
+            while (window.innerWidth < $(backgroundImages[currentIndex]).clientWidth) {
+                currentIndex = (currentIndex + 1) % backgroundImages.length;
+            }
+
+
+
+            $(backgroundImages).fadeOut(speed);
+            $(backgroundImages[currentIndex]).fadeIn(speed);
+            console.log(`${window.innerWidth}`);
+            console.log(`${backgroundImages[currentIndex].offsetWidth}`);
+
         },delay);
     });
 
